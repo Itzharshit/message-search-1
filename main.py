@@ -74,7 +74,8 @@ async def inline_handlers(_, event: InlineQuery):
         )
     # Search Channel Message using Search Query Words
     else:
-        async for message in User.search_messages(chat_id=Config.CHANNEL_ID, limit=50, query=event.query):
+        txt="All results\n\n"
+        async for message in User.search_messages(chat_id=Config.CHANNEL_ID, limit=49, query=event.query):
             if message.text:
                 answers.append(InlineQueryResultArticle(
                     title="{}".format(message.text.split("\n", 1)[0]),
@@ -83,6 +84,18 @@ async def inline_handlers(_, event: InlineQuery):
                     reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="")]]),
                     input_message_content=InputTextMessageContent(
                         message_text=message.text.markdown,
+parse_mode="markdown",
+                        disable_web_page_preview=True
+                    )
+                ))
+                txt=txt+"{} - https://t.me/pocketfmhub/{}".format(message.text.split("\n", 1)[0],message.message_id)+"\n\n"
+    answers.append(InlineQueryResultArticle(
+                    title="all results",
+                    description="All results",
+                    thumb_url="https://i.ibb.co/cNYJHYZ/IMG-20210815-144921.jpg",
+                    reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="")]]),
+                    input_message_content=InputTextMessageContent(
+                        message_text=txt,
                         parse_mode="markdown",
                         disable_web_page_preview=True
                     )
