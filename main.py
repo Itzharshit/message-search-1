@@ -28,11 +28,12 @@ User = Client(
 @Bot.on_message(filters.private & filters.command("start"))
 async def start_handler(_, event: Message):
     await event.reply_text(
-        "**Welcome to Pocket Fm Hub bot**\n\n"
+        "**Welcome to Pocket Fm Hub bot.**\n\n"
         "Here You can search all the stories of pocket fm hub.",
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("Join Group", url="https://t.me/pocketfmhubchat")],
-            [InlineKeyboardButton("Join Channel", url="https://t.me/pocketfmhub")]
+            [InlineKeyboardButton("Join Group", url="https://t.me/pocketfmhubchat")]
+            [InlineKeyboardButton("Join Channel", url="https://t.me/pocketfmhub")],
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Now", switch_inline_query_current_chat="")]])
         ])
     )
 
@@ -45,7 +46,7 @@ async def inline_handlers(_, event: InlineQuery):
         answers.append(
             InlineQueryResultArticle(
                 title="Tutorial Video",
-                description="If you are facing any problem on using this bot, Watch this Tutorial...",
+                description="If you are facing any problem In opening Tnlink, Watch this Tutorial...",
                 thumb_url="https://i.imgur.com/6jZsMYG.png",
                 input_message_content=InputTextMessageContent(
                     message_text="Please watch this video if you are facing problem in opening links.",
@@ -80,7 +81,7 @@ async def inline_handlers(_, event: InlineQuery):
                 answers.append(InlineQueryResultArticle(
                     title="{}".format(message.text.split("\n", 1)[0]),
                     description="{}".format(message.text.rsplit("\n", 1)[-1]),
-                    thumb_url="https://i.ibb.co/cNYJHYZ/IMG-20210815-144921.jpg",
+                    thumb_url="https://i.ibb.co/BwYhZTr/IMG-20210914-015740-238.jpg",
                     reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="")]]),
                     input_message_content=InputTextMessageContent(
                         message_text=message.text.markdown,
@@ -90,9 +91,9 @@ parse_mode="markdown",
                 ))
                 txt=txt+"{} - https://t.me/pocketfmhub/{}".format(message.text.split("\n", 1)[0],message.message_id)+"\n\n"
     answers.append(InlineQueryResultArticle(
-                    title="all results",
-                    description="All results",
-                    thumb_url="https://i.ibb.co/cNYJHYZ/IMG-20210815-144921.jpg",
+                    title="All Episodes",
+                    description="All Episodes",
+                    thumb_url="https://i.ibb.co/4dPd52s/Png-Item-5099442-1.png",
                     reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Again", switch_inline_query_current_chat="")]]),
                     input_message_content=InputTextMessageContent(
                         message_text=txt,
