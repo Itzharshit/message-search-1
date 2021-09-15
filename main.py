@@ -33,7 +33,7 @@ async def start_handler(_, event: Message):
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton("Join Group", url="https://t.me/pocketfmhubchat")]
             [InlineKeyboardButton("Join Channel", url="https://t.me/pocketfmhub")],
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Now", switch_inline_query_current_chat="")]])
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Search Now", switch_inline_query_current_chat="")]
         ])
     )
 
