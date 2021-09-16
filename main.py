@@ -31,7 +31,7 @@ async def start_handler(_, event: Message):
         "**Welcome to Pocket Fm Hub bot.**\n\n"
         "Here You can search all the stories of pocket fm hub.",
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("Join Group", url="https://t.me/pocketfmhubchat")]
+            [InlineKeyboardButton("Join Group", url="https://t.me/pocketfmhubchat")],
             [InlineKeyboardButton("Join Channel", url="https://t.me/pocketfmhub")],
             [InlineKeyboardButton("Search Now", switch_inline_query_current_chat="")]
         ])
