@@ -1,8 +1,4 @@
-# (c) @AbirHasan2005
-# I just made this for searching a channel message from inline.
-# Maybe you can use this for something else.
-# I first made this for @AHListBot ...
-# Edit according to your use.
+
 
 from configs import Config
 from pyrogram import Client, filters, idle
@@ -73,6 +69,14 @@ async def inline_handlers(_, event: InlineQuery):
                 ])
             )
         )
+        try:
+            await event.answer(
+            results=answers,
+            cache_time=0
+            )
+            print(f"[{Config.BOT_SESSION_NAME}] - Answered Successfully - {event.from_user.first_name}")
+        except QueryIdInvalid:
+            print(f"[{Config.BOT_SESSION_NAME}] - Failed to Answer - {event.from_user.first_name}")
     # Search Channel Message using Search Query Words
     else:
         txt="All results\n\n"
@@ -101,14 +105,14 @@ parse_mode="markdown",
                         disable_web_page_preview=True
                     )
                 ))
-    try:
-        await event.answer(
+        try:
+            await event.answer(
             results=answers,
             cache_time=0
-        )
-        print(f"[{Config.BOT_SESSION_NAME}] - Answered Successfully - {event.from_user.first_name}")
-    except QueryIdInvalid:
-        print(f"[{Config.BOT_SESSION_NAME}] - Failed to Answer - {event.from_user.first_name}")
+            )
+            print(f"[{Config.BOT_SESSION_NAME}] - Answered Successfully - {event.from_user.first_name}")
+        except QueryIdInvalid:
+            print(f"[{Config.BOT_SESSION_NAME}] - Failed to Answer - {event.from_user.first_name}")
 
 # Start Clients
 Bot.start()
