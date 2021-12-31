@@ -32,6 +32,19 @@ async def start_handler(_, event: Message):
             [InlineKeyboardButton("Search Now", switch_inline_query_current_chat="")]
         ])
     )
+@Bot.on_message(filters.private & filters.text)
+async def filter(bot, update):
+    await update.reply_text(
+        text="`Click the button below for searching...`",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [InlineKeyboardButton(text="Search Here", switch_inline_query_current_chat=update.text)],
+                [InlineKeyboardButton(text="Search in another chat", switch_inline_query=update.text)]
+            ]
+        ),
+        disable_web_page_preview=True,
+        quote=True
+    )
 
 
 @Bot.on_inline_query()
